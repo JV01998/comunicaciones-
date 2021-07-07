@@ -1,0 +1,31 @@
+clc; %limpiamos la consola
+clear all; %limpiamos la memoria
+close all;  %cerramos todos los programas abiertos en matlab
+disp("MODULACION AM")
+t=0:0.001:1;  %definimos el vector de tiempo
+set(0,'defaultlinelinewidth',2);
+A=5;  %Amplitud de señal
+fm=input('Frecuencia de Mensaje='); %Introduciendo valor de frecuancia de mensaje (f1)
+fc=input('Frecuancia de Portadora='); %Introduciendo valor de portadora (carrier)(f2) (f2>f1)
+mi=input('Indice de Modulacion=');  %Indice de modulacion
+Sm=A*sin(2*pi*fm*t);  %Señal de mensaje
+subplot(3,1,1);       %La grafica se divide en 3 columnas para muestreo 
+plot(t,Sm);
+xlabel('Tiempo');     %titulo del eje X
+ylabel('Amplitud');   %titulo del eje Y
+title('Señal de Mensaje');  %titulo de la grafica
+grid on;
+Sc=A*sin(2*pi*fc*t);    %Señal de portadora
+subplot(3,1,2);
+plot(t,Sc);
+xlabel('Tiempo');           %titulo del eje X
+ylabel('Amplitud');         %titulo del eje Y
+title('Señal Portadora');   %titulo de la grafica
+grid on;
+Sfm=(A+mi*Sm).*sin(2*pi*fc*t);%Señal AM, Amplitud de la portadora cambia a (A+Mensaje)
+subplot(3,1,3);
+plot(t,Sfm);
+xlabel('Tiempo');           %titulo del eje X
+ylabel('Amplitud');         %titulo del eje Y
+title('Señal AM');          %titulo de la grafica
+grid on;
